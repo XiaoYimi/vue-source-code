@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Demo</title>
+    <style>
+        .bg {
+            margin-top: 30px;
+            border-radius: 8px;
+            height: 40px;
+            line-height: 40px;
+            padding-left: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            background-color: pink;
+        }
+        .bank {
+            list-style: none;
+            margin: 20px 0 20px -40px;
+            padding: 0;
+            height: 1px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="bg">Original</div>
+        <ul>
+            <li><div title="self title">self title</div></li>
+            <li>text: 123</li>
+            <li>text: 123  --  456</li>
+            <li>input: <input type="text" value="enter what you want to said"></li>
+        </ul>
+
+        <div class="bg">Vue Direactive In Element</div>
+        <ul>
+            <li>{{ interpolation1 }}</li>
+            <li>{{ interpolation1 }} 13456 </li>
+            <li>{{ interpolation1 }}  -- {{ interpolation2 }}</li>
+            <li class="bank"></li>
+            <li>{{ interpolation.name }}</li>
+            <li>{{ interpolation.name }} 13456 </li>
+            <li>{{ interpolation.name }}  -- {{ interpolation.version }}</li>
+            <li class="bank"></li>
+            <li v-text="info">v-text: variables info</li>
+            <li v-text="you.name">v-text: object you.name</li>
+            <li class="bank"></li>
+            <li v-html="singleHtml">v-html: variables singleHtml</li>
+            <li v-html="html.double">v-html: object html.double</li>
+            <li class="bank"></li>
+            <li v-bind:src="src">v-bind:src variables src</li>
+            <li v-bind:src="baidu.src">v-bind:src object baidu.src</li>
+            <li :src="qrSrc">:src variables colonsrc</li>
+            <li class="bank"></li>
+            <li v-on:click="func1">v-click func1</li>
+            <li @click="func2">@click func2</li>
+            <li class="bank"></li>
+            <li>
+                <p>{{ input }}</p>
+                <p>v-model input <input type="text" v-model="input"></p>
+            </li>
+        </ul>
+
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                interpolation1: '插值表达式-1',
+                interpolation2: '插值表达式-2',
+                interpolation: {
+                    name: 'Vue Interpolation',
+                    version: '1.0.0'
+                },
+                info: 'vue source code',
+                you: {
+                    name: '筱依米'
+                },
+                singleHtml: '<span>span singleHtml</span>',
+                html: { double: '<h2>h2 title html.double</h2>' },
+                src: 'www.example.com',
+                baidu: {
+                    src: 'www.baidu.com'
+                },
+                qrSrc: 'www.qrsrc.com',
+                input: 'enter you said'
+            },
+            methods: {
+                func1 () {
+                    console.log('v-click: func1')
+                },
+                func2 () {
+                    console.log('@click: func2')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
